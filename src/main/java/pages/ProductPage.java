@@ -20,7 +20,7 @@ public class ProductPage {
         return header.getText();
     }
 
-    public void checkHeader(){
+    public void checkHeader() throws InterruptedException {
         String expectedTitle = new CatalogTVPage(BaseSteps.getDriver()).getTitleElementsNumber(1);
 
         Assert.assertEquals(expectedTitle,getHeader());

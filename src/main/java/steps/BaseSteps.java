@@ -1,4 +1,5 @@
 package steps;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.qameta.allure.Attachment;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import util.TestProperties;
+
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -18,13 +20,13 @@ public class BaseSteps {
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
     @Before
     public static void setUp() throws Exception {
-        switch (properties.getProperty("browser")){
+        switch (properties.getProperty("browser")) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
                 driver = new FirefoxDriver();
@@ -47,7 +49,7 @@ public class BaseSteps {
 
     @After
     public static void tearDown() throws Exception {
-       driver.quit();
+        driver.quit();
     }
 
     @Attachment(type = "image/png", value = "Screenshot")

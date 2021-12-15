@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.mn.Харин;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
@@ -58,7 +59,7 @@ public class ScenarioSteps {
     }
 
     @Когда("ищет заголовок элемента {int}")
-    public void ищетЗаголовокЭлемента(int arg0) {
+    public void ищетЗаголовокЭлемента(int arg0) throws InterruptedException {
         catalogTVSteps.TitleSearchOfElements(arg0);
         title = catalogTVSteps.title;
     }
@@ -66,7 +67,7 @@ public class ScenarioSteps {
 
     @Когда("выбирает товар")
     public void выбираетТовар() throws InterruptedException {
-        //Thread.sleep(6000);
+        Thread.sleep(6000);
         catalogTVSteps.chooseProduct();
     }
 
@@ -85,6 +86,13 @@ public class ScenarioSteps {
     public void выбираетПроизводителяНовыйСпособ(String arg0) throws InterruptedException {
         filterSteps.setManufacturerFilter2(arg0);
     }
+
+    @Когда("выбирает товар2")
+    public void chooseProduct2() throws InterruptedException {
+        Thread.sleep(6000);
+        catalogTVSteps.chooseProduct1(title);
+    }
+
 
 
 

@@ -1,14 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 public class FilterPage {
 
@@ -30,8 +28,8 @@ public class FilterPage {
     public FilterPage(WebDriver driver){
         PageFactory.initElements(driver,this);
         Wait<WebDriver> wait = new WebDriverWait(driver, (30));
-        //wait.until(ExpectedConditions.elementToBeClickable(allManufacturerView));
-       // wait.until(ExpectedConditions.elementToBeClickable(manufacturerFilter));
+        wait.until(ExpectedConditions.elementToBeClickable(allManufacturerView));
+        wait.until(ExpectedConditions.elementToBeClickable(manufacturerFilter));
         wait.until(ExpectedConditions.visibilityOf(manufacturerEnter));
     }
 
@@ -54,6 +52,9 @@ public class FilterPage {
     //новый способ ввода производителя
     public void manufacturerEnterNew(String manufacturer) throws InterruptedException {
         Thread.sleep(3000);
+        JavascriptExecutor jse = (JavascriptExecutor) BaseSteps.getDriver();
+        jse.executeScript("scroll(242, 694)");
+        //allManufacturerView.click();
         manufacturerEnter.clear();
         manufacturerEnter.sendKeys(manufacturer);
         manufacturerEnter.sendKeys(Keys.TAB);
